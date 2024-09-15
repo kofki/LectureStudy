@@ -1,21 +1,47 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} 
+{% extends "base.html" %} {% block title %}StudyHack{% endblock %} 
 
 {% block content %}
-<div class="container center">
-    <a class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons">add</i></a>
-</div>
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
+<div class="container">
+    <div class="container header">
+        <h1 class="center">Get Lecture Notes Fast.</h1>
+        <h1 class="center">Learn Faster.</h1>
+    </div>
+    <div class="container center">
+        <p class="center">
+            StudyHack is an AI powered tool that is able to convert recording, audio, or video files into lecture notes. 
+            It utilizes GPT4 API to transcribe files and convert them into a text file so taking notes from lectures become easy again.
+        </p>
+    </div>
+</div> 
+<hr>   
+<div class="container center">
+    <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="large material-icons">add</i></a>
+</div>
+<div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+        <h4>Select an option</h4>
+        <div class="row">    
+            <a href="upload.html" class="waves-effect waves-light red btn-large">Upload a Lecture from File</a>
+        </div>
+        <div class="row">    
+            <a href="record.html" class="waves-effect waves-light red btn-large">Record a lecture</a>
+        </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-close waves-effect waves-light  btn-flat">Close</a>
     </div>
-  </div>
+</div>
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, {});
+        });
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+    
+</script>
           
 {% endblock %}
