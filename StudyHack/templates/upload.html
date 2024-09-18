@@ -1,10 +1,21 @@
 {% extends "base.html" %}{% block title %}Upload file{% endblock %}
 {% block content %}
-<form method="post" enctype="multipart/form-data"></form>
-    {% csrf_token %}
-    <!-- Your form fields here -->
-    <input type="file" name="fileUpload" multiple>
-    <button type="submit">Submit</button>
-</form>
+
+<!-- its good etiquette to have another div (even though there is a div containing the block)-->
+<div>
+
+    <h1>Upload a File</h1>
+
+    {% if upload_successful %}
+        <p style="color: green;">File uploaded successfully!</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+</div>
 
 {% endblock %}
