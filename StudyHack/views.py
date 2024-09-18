@@ -35,22 +35,6 @@ def handle_uploaded_file(f):
 
 
 def upload_file(request):
-    #if request.method == "POST":
-     #   file = File_form(request.POST)
-     #   with open("StudyHack/transcript_files_test/lecture1.txt", 'w') as f:
-      #      for line in file:
-      #          f.write(str(line) + '\n')
-      #  return redirect('notes')
-    return render(request, "upload.html")
-
-def record_audio(request):
-    return render(request, "record.html")
-
-def notes(request):
-    return render(request, "notes.html", {'text': test})
-
-def flashcards(request):
-    return render(request, "flashcards.html")
     upload_successful = False
     
     if request.method == 'POST':
@@ -62,3 +46,12 @@ def flashcards(request):
         form = UploadFileForm()
     
     return render(request, 'upload.html', {'form': form, 'upload_successful': upload_successful})
+
+def record_audio(request):
+    return render(request, "record.html")
+
+def notes(request):
+    return render(request, "notes.html", {'text': test})
+
+def flashcards(request):
+    return render(request, "flashcards.html")
