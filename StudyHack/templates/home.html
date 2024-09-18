@@ -14,18 +14,22 @@
         </p>
     </div>
 </div> 
-<hr>   
+<hr>
+<div class="container center">
+    <h2>Get Started</h2>
+</div>   
 <div class="container center">
     <a class="btn-floating btn-large waves-effect waves-light red modal-trigger" href="#modal1"><i class="large material-icons">add</i></a>
+    <p>Add a file</p>
 </div>
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>Select an option</h4>
         <div class="row">    
-            <a href="upload.html" class="waves-effect waves-light red btn-large">Upload a Lecture from File</a>
+            <a href="{% url 'upload' %}" class="waves-effect waves-light red btn-large">Upload a Lecture from File</a>
         </div>
         <div class="row">    
-            <a href="record.html" class="waves-effect waves-light red btn-large">Record a lecture</a>
+            <a href="{% url 'record' %}" class="waves-effect waves-light red btn-large">Record a lecture</a>
         </div>
     </div>
     <div class="modal-footer">

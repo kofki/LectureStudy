@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Notes from Lecture {% endblock %}
+
+{% block content %}
+<div class="container center">
+    <span class="black-text small">
+    {{ text | safe  }}
+    </span>
+</div>
+
+{% endblock %}
