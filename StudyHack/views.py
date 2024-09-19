@@ -1,6 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .forms import File_form
-from StudyHack.note_creator import testing_transcript, test
+from StudyHack.note_creator import testing_transcript
 from django.shortcuts import render, redirect
 from .forms import UploadFileForm
 import os
@@ -51,7 +50,8 @@ def record_audio(request):
     return render(request, "record.html")
 
 def notes(request):
-    return render(request, "notes.html", {'text': test})
+    string = testing_transcript()
+    return render(request, "notes.html", {'text': string})    
 
 def flashcards(request):
     return render(request, "flashcards.html")
