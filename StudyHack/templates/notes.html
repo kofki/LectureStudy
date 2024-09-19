@@ -2,10 +2,17 @@
 
 {% block content %}
 <div class="container">
-    {{ text | safe  }}
+    <ul>
+    {% for file in files %}
+        <li>
+            <form method="POST" action="{% url 'notes' %}">
+                {% csrf_token %}
+                <input type="hidden" name="transcript_name" value="{{ file }}">
+                <button type="submit">{{ file }}</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
 </div>
-<hr>
-<br>
-<br>
 
 {% endblock %}

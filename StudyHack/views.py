@@ -1,11 +1,13 @@
 from django.shortcuts import render, HttpResponse, redirect
-from StudyHack.note_creator import testing_transcript
+from StudyHack.note_creator import testing_transcript, save_transcript
 from django.shortcuts import render, redirect
 from .forms import UploadFileForm
 import os
 import secrets
 import string
 from django.conf import settings
+import markdown
+
 
 # Create your views here.
 def generate_secret_key():
@@ -50,8 +52,16 @@ def record_audio(request):
     return render(request, "record.html")
 
 def notes(request):
-    string = testing_transcript()
-    return render(request, "notes.html", {'text': string})    
+    path = "saved_transcripts"
+    if request.method == "POST":
+        filename = request.POST.get("transcript_name")
+        with open(f"{path}/{filename}", 'r', encoding="UTF-8") as file:
+            transcript = file.read()
+        return render(request, "note.html", {"text": markdown.markdown(transcript), "title":filename})
+
+    files = os.listdir(path)
+    return render(request, "notes.html", {"files": files})
+  
 
 def flashcards(request):
     return render(request, "flashcards.html")

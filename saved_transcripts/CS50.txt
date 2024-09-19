@@ -1,0 +1,87 @@
+### CS50 Week 1 Summary
+
+**Introduction to C Programming:**
+- CS50 focuses on learning programming, specifically the C language.
+- The session builds on concepts from the previous week (functions, loops, conditionals) learned in Scratch.
+
+**Objectives:**
+- Solve problems using functions, variables, conditionals, and loops.
+- Discuss the limitations of computers and real-world problem representation.
+- Introduce how to write source code and the need for a compiler.
+
+**Key Concepts:**
+- **Source Code vs. Machine Code:** 
+  - Source code is the code humans write.
+  - Machine code is binary (zeros and ones) that computers understand.
+- Compilers are programs that translate source code to machine code.
+
+**First Program:**
+- Introduction of a basic program that outputs "Hello, world."
+- Comparison of Scratch’s "say" function to C’s `printf`.
+
+**Learning Environment:**
+- Use of cloud-based software (https://cs50.dev) for the course.
+- Implementation of Visual Studio Code (VS Code) for coding, minimizing technical support issues.
+- Goal is to transition to local programming environments as the course progresses.
+
+**Conclusion:**
+- Emphasis on problem-solving and programming fundamentals throughout the course.
+### Lecture Notes Summary
+
+#### User Interface Overview
+- **Interface Components:**
+  - **Code Writing Area:** Tabbed interface for coding (varies in appearance based on user settings).
+  - **Terminal Window (Console):** For typing commands to compile and run code.
+  - **Folder Interface:** Similar to Mac OS/Windows for file management.
+  - **Activity Bar:** Contains VS Code-specific and CS50-specific features (includes help resources).
+
+#### Code Writing Process
+1. **Basics of Coding Commands:**
+   - `code hello.c`: Opens or creates a new C file named "hello.c."
+   - `make`: Compiles the program from source code to machine code.
+   - `./hello`: Runs the compiled program.
+
+2. **Prompt Indicator:**
+   - The dollar sign (`$`) represents the terminal prompt where commands are typed.
+
+#### File Naming Conventions
+- Use **lowercase letters** and **no spaces** in file names to avoid complications in a command-line environment.
+- File extension for C files: **`.c`**.
+
+#### Example Code Structure
+- Starting code structure:
+  1. `#include <stdio.h>`
+  2. `int main(void) {`
+  3. `    printf("Hello, world");`
+  4. `}`
+
+- **Key Syntax Details:**
+  - Curly braces `{}` are used for blocks of code.
+  - Indentation is important for readability and structure.
+  - Statements in C end with a semicolon `;`.
+
+#### Additional Points
+- VS Code aids by auto-completing code elements (e.g., braces, parentheses).
+- Use of double quotes for strings in C (e.g., `"Hello, world"`). 
+
+### Reserved Space for Future Notes:
+- _______________________________________
+- _______________________________________
+- _______________________________________
+- The code discussed consists of six lines, with line 5 being the most intellectually significant.
+- To compile the code, the command is `make hello`, not `make hello.c`, since the source file is already created. 
+- The `make` command looks for `hello.c`, converts it to machine code, and saves it as `hello`.
+- Seeing no error messages after running the `make` command is actually a positive indication.
+- To run the code, use `./hello`, similar to double-clicking an application.
+- Initial output is `hello, world$`, where the dollar sign indicates the terminal prompt, which is aesthetically incorrect.
+- The proper syntax in C requires ending thoughts on a single line; hitting Enter prematurely can cause errors.
+- Using a backslash followed by 'n' (`\n`) in the `printf` function ensures output moves to a new line.
+- After adding `\n`, recompiling with `make hello` and running `./hello` gives the correct output: `hello, world`.
+- Focus on line 5 for now; understanding other components like `include`, `int`, `main`, `void`, and braces will come later.
+- Students asked about the placement of `\n` within quotes; it needs to be there for the `printf` function to recognize it as part of its output.
+- To print a literal backslash, you must use `\\`.
+- Comparison of Scratch programming to C: 
+  - Function names like `print` in Scratch correlate to `printf` in C.
+  - Parentheses in C reflect the usage of ovals in Scratch.
+  - Usage of double quotes for strings and the necessity of a semicolon to end statements in C.
+- The backslash-n (`\n`) is known as an escape sequence, enabling special character outputs in strings.

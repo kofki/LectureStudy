@@ -53,4 +53,12 @@ def testing_transcript():
     for note in resulting_notes:
         final_text += note + "\n"
     
-    return markdown.markdown(final_text)
+    return final_text
+
+
+def save_transcript(transcript_text, title):
+    path = "saved_transcripts"
+    open(f"{path}/{title}.txt", "a")
+    with open(f"{path}/{title}.txt", "w", encoding="utf-8") as file:
+        file.write(transcript_text)
+        return f"{path}/{title}.txt"
