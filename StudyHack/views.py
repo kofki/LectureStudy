@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from StudyHack.note_creator import testing_transcript, save_transcript
+from StudyHack.note_creator import testing_transcript, save_transcript, transcript_audio
 from django.shortcuts import render, redirect
 from .forms import UploadFileForm
 import os
@@ -33,7 +33,12 @@ def handle_uploaded_file(f):
         for chunk in f.chunks():
             destination.write(chunk)
     # Additional logic goes here
-
+    saved_transcript_path = os.path.join('saved_transcripts', f.name[:-3])
+    open(f"{saved_transcript_path}.txt", 'a')
+    with open(f"{saved_transcript_path}.txt", 'w') as file:
+        file.write(transcript_audio(f.name))
+    
+        
 
 def upload_file(request):
     upload_successful = False

@@ -1,18 +1,24 @@
 from pydub import AudioSegment
-from pydub.silence import detect_nonsilent
+from pydub.silence import split_on_silence
+import io
 
 def split_audio_file(audio_file_path):
-    audio_file = AudioSegment.from_mp3(audio_file_path)
-    nonsilent_speech_segments = detect_nonsilent(audio_file)
-    audio_segments = []
-    if not nonsilent_speech_segments:
-        audio_segments.append(audio_file)
-    else:
-        for start, end in nonsilent_speech_segments:
-            audio_segments.append(audio_file[start:end])
+    audio_file = AudioSegment.from_file(file=audio_file_path, format='wave')
 
-    for index, audio_segment in enumerate(audio_segments):
-        audio_segment.export(f"StudyHack/audio_files_temp/audio_segment_{index}.wav", format="wav")
+    audio_segments = split_on_silence(
+        audio_file,
+        # split on silences longer than 1000ms (1 sec)
+        min_silence_len=1000,
+
+        # anything under -16 dBFS is considered silence
+        silence_thresh=-40, 
+
+        # keep 200 ms of leading/trailing silence
+        keep_silence=200
+    )
+    for i, segment in enumerate(audio_segments):
+        segment.export(f"StudyHack/audio_files_temp/segment{i}.wav", format="wav")
+    return len(audio_segments)
     
 
 def split_text_file(text_file_path):

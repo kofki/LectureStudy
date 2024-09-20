@@ -1,38 +1,37 @@
 from StudyHack.file_slicer import split_audio_file, split_text_file, newline_process_text
-#import transcript
+from StudyHack.transcript import get_transcript
 import os
 from openai import OpenAI
-import markdown
+import copy
+
+api_key = os.getenv("OPENAI_API_KEY")
 
 
 
-'''
-# path for audio test
+def transcript_audio(audio_file_name):
+    path_uploaded = "uploaded_files"
 
-path_audio_file = "StudyHack/audio_files_test/audio1.wav"
-path_audio_segments ="StudyHack/audio_files_temp/"
+    # split audio files into smaller parts and make sure that it is only split when there is silence
+    audio_length = split_audio_file(f"{path_uploaded}/{audio_file_name}")
+    temp_file_path = "StudyHack/audio_files_temp/"
 
-# split audio files into smaller parts and make sure that it is only split when there is silence
-split_audio_file(path_audio_file)
-
-# Get the transcripts from the audio segments
-notes = []
-for file in os.listdir(path_audio_segments):
-  if file.endswith(".wav"):
-    notes.append(newline_process_text(transcript.get_transcript(
-      path_audio_segments + file, api_key)))
-'''
-def testing_transcript():
-    api_key = os.getenv("OPENAI_API_KEY")
+    # Get the transcripts from the audio segments
     notes = []
-    # Process text transcripts into smaller segments (test_file)
-    if not notes:
-        notes = split_text_file("StudyHack/transcript_files_test/CS50 Lecture 1 Transcript.txt")
+    for i, item in enumerate(os.listdir(temp_file_path)):
+        if i < audio_length:
+            file_path = os.path.join(temp_file_path, item)
+            notes.append(newline_process_text(get_transcript(file_path, api_key)))
 
-    # Send an API call to OpenAI to generate a summary of the notes
+    return create_transcript(notes)
+
+
+def create_transcript(notes, limit=-1):
+ # Send an API call to OpenAI to generate a summary of the notes
     client = OpenAI(api_key=api_key)
     resulting_notes = []
-    for note in notes[:3]:
+    if limit != -1:
+        notes = copy.deepcopy(notes[:limit])
+    for note in notes:
         response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -55,6 +54,15 @@ def testing_transcript():
     
     return final_text
 
+    
+
+def testing_transcript():
+    notes = []
+    # Process text transcripts into smaller segments (test_file)
+    if not notes:
+        notes = split_text_file("StudyHack/transcript_files_test/CS50 Lecture 1 Transcript.txt")
+    return create_transcript(notes, 2)
+   
 
 def save_transcript(transcript_text, title):
     path = "saved_transcripts"
